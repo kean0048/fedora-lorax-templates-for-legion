@@ -9,3 +9,4 @@ runcmd mkdir -p ${workdir}/iso-graft/content/repo
 runcmd ostree --repo=${workdir}/iso-graft/content/repo init --mode=archive-z2
 runcmd ostree --repo=${workdir}/iso-graft/content/repo remote add ostree-mirror --set=gpg-verify=false ${ostree_repo}
 runcmd ostree --repo=${workdir}/iso-graft/content/repo pull --mirror ostree-mirror ${ostree_ref}
+runcmd find ${workdir}/iso-graft/content/repo/objects -name '*.commitmeta' -delete
