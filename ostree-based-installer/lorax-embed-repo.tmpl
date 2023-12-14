@@ -16,6 +16,6 @@
 runcmd mkdir ${root}/ostree
 runcmd ostree --repo=${root}/ostree/repo init --mode=bare
 runcmd ostree --repo=${root}/ostree/repo remote add ${ostree_osname} --set=gpg-verify=false ${ostree_install_repo}
-runcmd ostree --repo=${root}/ostree/repo pull --mirror ${ostree_osname} ${ostree_install_ref}
+runcmd bash -c 'for i in {1..10}; do [[ $i -gt 1 ]] && sleep 15; ostree --repo=${root}/ostree/repo pull --mirror ${ostree_osname} ${ostree_install_ref} && s=0 && break || s=$?; done; exit $s'
 runcmd bash -c 'if [ "${ostree_install_ref}" != "${ostree_update_ref}" ]; then ostree --repo=${root}/ostree/repo refs ${ostree_install_ref} --create ${ostree_update_ref}; fi'
 runcmd ostree --repo=${root}/ostree/repo summary -u
