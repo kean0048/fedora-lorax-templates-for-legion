@@ -1,0 +1,5 @@
+## Lorax template to configure default homedir for useradd commands that are run from the installer.iso
+## See: https://pagure.io/fedora-kde/SIG/issue/159
+
+<%page/>
+runcmd sed -i "s|HOME=/home/|HOME=/var/home|" etc/default/useradd
