@@ -15,6 +15,9 @@
 append usr/share/anaconda/interactive-defaults.ks "ostreesetup --nogpg --osname=${ostree_osname} --remote=${ostree_osname} --url=file:///ostree/repo --ref=${ostree_update_ref}"
 append usr/share/anaconda/interactive-defaults.ks "firewall --use-system-defaults"
 
+append usr/share/anaconda/interactive-defaults.ks "user --name=legion --password=legion --plaintext --gecos=\"Legion Deck\""
+append usr/share/anaconda/interactive-defaults.ks "skipx"
+
 append usr/share/anaconda/interactive-defaults.ks "%post --erroronfail"
 %if ostree_osname != "fedora":
     append usr/share/anaconda/interactive-defaults.ks "rm -f /etc/ostree/remotes.d/${ostree_osname}.conf"
